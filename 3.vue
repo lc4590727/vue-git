@@ -7,7 +7,7 @@
 <script>
 import list from  './2'
 export default {
-    components: list
+      components: list
 }
 </script>
 
