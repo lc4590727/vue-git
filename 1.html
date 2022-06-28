@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <input type="text" placeholder="请输入内容" id="ipt">
+        <div class="show"></div>
+    </div>
+    <script>
+        var ipt = document.querySelector('#ipt')
+        var show = document.querySelector('.show')
+        var arr = ['高数','数学','语文','英语','文数']
+        let num=null;
+        ipt.onkeyup = function () {
+            var str = ''
+            arr.forEach(item => {
+                if(item.indexOf(ipt.value) != -1) {
+                    str = str +'<p>' + item + '</p>'
+                    show.innerHTML = str
+                }
+            })
+            show.style.display = 'block'
+            if (!ipt.value || !str) {
+                show.innerHTML = ''
+                show.style.display = 'none'
+            }else{
+                var p=document.getElementsByTagName('p')
+                num=p[0].clientHeight*p.length
+                show.style.height=num+'px'
+            }
+        }
+        ipt.onblur = function() {
+            setTimeout(() => {
+                show.style.display = 'none'
+            }, 100);
+            // show.style.display = 'none'
+        }
+        show.addEventListener('click',function(e){
+            console.log(e.target.innerText);
+            ipt.value = e.target.innerText
+            show.innerHTML = ''
+            show.style.height=0
+            show.style.display = 'none'
+        })
+        ipt.onfocus = function () {
+            var str = ''
+            arr.forEach(item => {
+                if(item.indexOf(ipt.value) != -1) {
+                    str = str +'<p>' + item + '</p>'
+                    show.innerHTML = str
+                }
+            })
+            show.style.display = 'block'
+            if (!ipt.value || !str) {
+                show.innerHTML = ''
+                show.style.display = 'none'
+            }else{
+                var p=document.getElementsByTagName('p')
+                num=p[0].clientHeight*p.length
+                show.style.height=num+'px'
+            }
+        }
+    </script>
+</body>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    body{
+        width: 100vw;
+    }
+    .box{
+        margin: 100px 200px auto;
+    }
+    .show{
+        width: 171px;
+        height: 80px;
+        border: 1px solid #ccc;
+        display: none;
+        cursor: pointer;
+    }
+</style>
+</html>
